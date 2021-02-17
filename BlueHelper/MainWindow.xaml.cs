@@ -25,10 +25,18 @@ namespace BlueHelper
         public MainWindow()
         {
             InitializeComponent();
+            StartupProcedures();
+        }
+
+        private void StartupProcedures()
+        {
+            //Define initial window position (0,0) = top left corner
             Left = 0;
             Top = 0;
+            //Next calculate the position to be on the corner of the taskbar
             PositionWindowRelativeToTaskbar();
         }
+
 
         private void PositionWindowRelativeToTaskbar()
         {
@@ -72,5 +80,17 @@ namespace BlueHelper
         {
             Close();
         }
+
+        protected override void OnDeactivated(EventArgs e)
+        {
+            Close();
+        }
+
+        protected override void OnActivated(EventArgs e)
+        {
+            //StartupProcedures(); For debug only
+            this.BringIntoView();
+        }
+        
     }
 }

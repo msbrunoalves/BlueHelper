@@ -4,28 +4,42 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BlueHelper"
+        xmlns:ui="http://schemas.modernwpf.com/2019" ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
-        Title="Bluetooth Settings" Height="200" Width="350" ShowInTaskbar="False" ResizeMode="NoResize" WindowStyle="None" Background="LightGray">
-    <Grid>
-        <Label HorizontalAlignment="Left" Height="24" Margin="36,20,0,0" Content="PrimaryScreenWidth" VerticalAlignment="Top" Width="120"/>
-        <Label HorizontalAlignment="Left" Height="24" Margin="36,40,0,0" Content="PrimaryScreenHeight" VerticalAlignment="Top" Width="120"/>
-        <Label HorizontalAlignment="Left" Height="24" Margin="36,60,0,0" Content="WorkAreaWidth" VerticalAlignment="Top" Width="120"/>
-        <Label HorizontalAlignment="Left" Height="24" Margin="36,80,0,0" Content="WorkAreaHeight" VerticalAlignment="Top" Width="120"/>
-        <Label HorizontalAlignment="Left" Height="24" Margin="36,100,0,0" Content="TOP" VerticalAlignment="Top" Width="120"/>
-        <Label HorizontalAlignment="Left" Height="24" Margin="36,120,0,0" Content="LEFT" VerticalAlignment="Top" Width="120"/>
-        <Label HorizontalAlignment="Left" Height="24" Margin="36,140,0,0" Content="TaskbarPosition" VerticalAlignment="Top" Width="120"/>
-        <Label HorizontalAlignment="Left" Height="24" Margin="36,160,0,0" Content="Taskbar'Height'" VerticalAlignment="Top" Width="120"/>
+        Title="Bluetooth Settings" Height="200" Width="350" ShowInTaskbar="False" ResizeMode="NoResize" Background="WhiteSmoke" WindowStyle="ToolWindow">
+    <Grid Margin="10">
+        <Label HorizontalAlignment="Left" Height="22" Margin="3,1,0,0" Content="PrimaryScreenWidth" VerticalAlignment="Top" Width="152" FontSize="14"/>
+        <Label HorizontalAlignment="Left" Height="21" Margin="3,19,0,0" Content="PrimaryScreenHeight" VerticalAlignment="Top" Width="152" FontSize="14"/>
+        <Label HorizontalAlignment="Left" Height="21" Margin="3,37,0,0" Content="WorkAreaWidth" VerticalAlignment="Top" Width="152" FontSize="14"/>
+        <Label HorizontalAlignment="Left" Height="21" Margin="3,55,0,0" Content="WorkAreaHeight" VerticalAlignment="Top" Width="152" FontSize="14"/>
+        <Label HorizontalAlignment="Left" Height="21" Margin="3,73,0,0" Content="TOP" VerticalAlignment="Top" Width="152" FontSize="14"/>
+        <Label HorizontalAlignment="Left" Height="21" Margin="3,91,0,0" Content="LEFT" VerticalAlignment="Top" Width="152" FontSize="14"/>
+        <Label HorizontalAlignment="Left" Height="21" Margin="3,109,0,0" Content="TaskbarPosition" VerticalAlignment="Top" Width="152" FontSize="14"/>
+        <Label HorizontalAlignment="Left" Height="22" Margin="3,126,0,0" Content="Taskbar'Height'" VerticalAlignment="Top" Width="152" FontSize="14"/>
 
 
-        <Button Content="Refresh" HorizontalAlignment="Left" Margin="210,10,0,0" VerticalAlignment="Top" Width="74" Click="Button_Click"/>
-        <Label Name="PrimaryScreenWidthValue"  Content="Label" HorizontalAlignment="Left" Margin="161,22,0,0" VerticalAlignment="Top" Height="23" Width="34" FontSize="10"/>
-        <Label Name="PrimaryScreenHeightValue"  Content="Label" HorizontalAlignment="Left" Margin="161,42,0,0" VerticalAlignment="Top" Height="23" Width="34" FontSize="10"/>
-        <Label Name="WorkAreaWidthValue"  Content="Label" HorizontalAlignment="Left" Margin="161,62,0,0" VerticalAlignment="Top" Height="23" Width="34" FontSize="10"/>
-        <Label Name="WorkAreaHeightValue"  Content="Label" HorizontalAlignment="Left" Margin="161,82,0,0" VerticalAlignment="Top" Height="23" Width="34" FontSize="10"/>
-        <Label Name="TopValue"  Content="Label" HorizontalAlignment="Left" Margin="161,102,0,0" VerticalAlignment="Top" Height="23" Width="34" FontSize="10"/>
-        <Label Name="LeftValue"  Content="Label" HorizontalAlignment="Left" Margin="161,122,0,0" VerticalAlignment="Top" Height="23" Width="34" FontSize="10"/>
-        <Label Name="TaskbarPosition"  Content="Label" HorizontalAlignment="Left" Margin="161,142,0,0" VerticalAlignment="Top" Height="23" Width="34" FontSize="10"/>
-        <Label Name="TaskbarHeight"  Content="Label" HorizontalAlignment="Left" Margin="161,162,0,0" VerticalAlignment="Top" Height="23" Width="34" FontSize="10"/>
-        <Button Content="X" HorizontalAlignment="Left" Margin="223,90,0,0" VerticalAlignment="Top" Width="20" Click="Button_Click_1"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" Margin="235,3,0,0" VerticalAlignment="Top" Width="88" Click="Button_Click" FontSize="12" Height="37"/>
+        <Label Name="PrimaryScreenWidthValue"  Content="Label" HorizontalAlignment="Left" Margin="160,2,0,0" VerticalAlignment="Top" Height="21" Width="62" FontSize="14"/>
+        <Label Name="PrimaryScreenHeightValue"  Content="Label" HorizontalAlignment="Left" Margin="160,20,0,0" VerticalAlignment="Top" Height="20" Width="62" FontSize="14"/>
+        <Label Name="WorkAreaWidthValue"  Content="Label" HorizontalAlignment="Left" Margin="160,38,0,0" VerticalAlignment="Top" Height="20" Width="62" FontSize="14"/>
+        <Label Name="WorkAreaHeightValue"  Content="Label" HorizontalAlignment="Left" Margin="160,56,0,0" VerticalAlignment="Top" Height="20" Width="62" FontSize="14"/>
+        <Label Name="TopValue"  Content="Label" HorizontalAlignment="Left" Margin="160,74,0,0" VerticalAlignment="Top" Height="20" Width="62" FontSize="14"/>
+        <Label Name="LeftValue"  Content="Label" HorizontalAlignment="Left" Margin="160,92,0,0" VerticalAlignment="Top" Height="20" Width="62" FontSize="14"/>
+        <Label Name="TaskbarPosition"  Content="Label" HorizontalAlignment="Left" Margin="160,109,0,0" VerticalAlignment="Top" Height="21" Width="62" FontSize="14"/>
+        <Label Name="TaskbarHeight"  Content="Label" HorizontalAlignment="Left" Margin="160,127,0,0" VerticalAlignment="Top" Height="21" Width="62" FontSize="14"/>
+        <Button Content="X" HorizontalAlignment="Left" Margin="250,56,0,0" VerticalAlignment="Top" Width="36" Click="Button_Click_1" FontSize="12" Height="36"/>
+        <Button Content="Click me" Margin="235,97,0,22" Height="33" FontSize="12">
+            <ui:FlyoutService.Flyout>
+                <ui:Flyout x:Name="Flyout1">
+                    <StackPanel>
+                        <TextBlock
+                                Style="{StaticResource BaseTextBlockStyle}"
+                                Text="All items will be removed. Do you want to continue?"
+                                Margin="0,0,0,12" />
+                    </StackPanel>
+                </ui:Flyout>
+            </ui:FlyoutService.Flyout>
+        </Button>
+
     </Grid>
 </Window>

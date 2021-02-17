@@ -103,5 +103,10 @@
   <ItemGroup>
     <None Include="Resources\TrayIcon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ModernWpfUI">
+      <Version>0.9.3</Version>
+    </PackageReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
