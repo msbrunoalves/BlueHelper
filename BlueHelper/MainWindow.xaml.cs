@@ -113,6 +113,10 @@ namespace BlueHelper
 
         private async void FillDeviceTreeView()
         {
+            //Bloquear o botão de refresh para evitar spam de threads
+            refreshBtn.IsEnabled = false;
+            refreshProgressBar.IsIndeterminate = true;            //necessário para parar a progressbar de usar CPU mesmo escondida
+            refreshProgressBar.Visibility = Visibility.Visible;
             BluetoothDeviceInfo[] devices = await Task.Factory.StartNew(() => DiscoverBluetoothDevices(), TaskCreationOptions.LongRunning);
             //Limpar o TreeView primeiro
             deviceTreeView.Items.Clear();
@@ -127,6 +131,10 @@ namespace BlueHelper
                         "Authenticated " + d.Authenticated.ToString()};
                 deviceTreeView.Items.Add(newChild);
             }
+            //Ativar novamente o botão de refresh
+            refreshBtn.IsEnabled = true;
+            refreshProgressBar.IsIndeterminate = false;            //necessário para parar a progressbar de usar CPU mesmo escondida
+            refreshProgressBar.Visibility = Visibility.Hidden;
         }
     }
 }
