@@ -13,8 +13,12 @@
     <Grid Margin="10">
         <Border CornerRadius="10" Background="White" Opacity="1">
         </Border>
-        <Button Content="X" HorizontalAlignment="Left" Margin="250,56,0,0" VerticalAlignment="Top" Width="36" Click="Button_Click_1" FontSize="12" Height="36"/>
-        <Button Content="Click me" Margin="235,97,0,22" Height="33" FontSize="12">
+        <TextBlock Text="Bluetooth Devices" Style="{StaticResource TitleTextBlockStyle}" Margin="10,7,130,141"/>
+        <Button Name="refreshBtn" FontFamily="Segoe MDL2 Assets" Content="&#xE72C;" Margin="228,10,0,142" Click="refreshBtn_Click" Height="28"/>
+
+        <TreeView Name="deviceTreeView" Margin="10,42,10,0"/>
+        <Button Content="X" HorizontalAlignment="Left" Margin="292,10,0,0" VerticalAlignment="Top" Width="28" Click="Button_Click_1" FontSize="12" Height="28"/>
+        <Button Content="i" Margin="265,10,0,142" Height="28" FontSize="12" Width="22">
             <ui:FlyoutService.Flyout>
                 <ui:Flyout x:Name="Flyout1">
                     <Grid>

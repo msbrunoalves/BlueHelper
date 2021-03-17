@@ -72,6 +72,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\BluetoothDevice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -104,6 +105,12 @@
     <None Include="Resources\TrayIcon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="InTheHand.BluetoothLE">
+      <Version>4.0.19</Version>
+    </PackageReference>
+    <PackageReference Include="InTheHand.Net.Bluetooth">
+      <Version>4.0.15</Version>
+    </PackageReference>
     <PackageReference Include="ModernWpfUI">
       <Version>0.9.3</Version>
     </PackageReference>
