@@ -12,6 +12,10 @@
     </Window.Background>
     <Grid Margin="10">
         <Border CornerRadius="10" Background="White" Opacity="1">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3"/>
+            </Border.Effect>
+
         </Border>
         <TextBlock Text="Bluetooth Devices" Style="{StaticResource TitleTextBlockStyle}" Margin="10,7,130,141"/>
         <Button Name="refreshBtn" FontFamily="Segoe MDL2 Assets" Content="&#xE72C;" Margin="228,10,0,142" Click="refreshBtn_Click" Height="28"/>
