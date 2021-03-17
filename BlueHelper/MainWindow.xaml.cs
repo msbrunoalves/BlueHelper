@@ -27,17 +27,11 @@ namespace BlueHelper
     /// </summary>
     public partial class MainWindow : Window
     {
-        //Delegate Signature
-        public delegate void updateTreeView();
-
-        ThreadStart threadStart;
-        Thread updateThread;
-
         public MainWindow()
         {
             InitializeComponent();
             StartupProcedures();
-            SetupAndStartBluetoothUpdateThread();
+            FillDeviceTreeView();
         }
 
         private void StartupProcedures()
@@ -49,47 +43,13 @@ namespace BlueHelper
             PositionWindowRelativeToTaskbar();
         }
 
-        private void SetupAndStartBluetoothUpdateThread()
+        //Run this on wait (async), takes a while
+        private BluetoothDeviceInfo[] DiscoverBluetoothDevices()
         {
-            //Instantiate thread start object and pass in what Method it will call
-            threadStart = new ThreadStart(StartBluetoothUpdateThread);
-            //instantiate the thread and pass in the thread start object
-            updateThread = new Thread(threadStart);
-            //Name the thread
-            updateThread.Name = "Bluetooth refresh";
-            //Start the thread
-            updateThread.Start();
-        }
-
-        //Method that the thread for refreshing bluetooth calls when starting
-        private void StartBluetoothUpdateThread()
-        {
-            //Create a delegate variable and pass in what Method this delegate will call.
-            updateTreeView UpdateTreeView = new updateTreeView(FillTreeView);
-            this.Dispatcher.Invoke(UpdateTreeView);
-        }
-
-        private void FillTreeView()
-        {
-            //Limpar o TreeView primeiro
-            deviceTreeView.Items.Clear();
             //preencher o Datagrid com a lista de dispositivos bluetooth
             BluetoothClient client = new BluetoothClient();
             List<string> items = new List<string>();
-            BluetoothDeviceInfo[] devices = client.DiscoverDevices().ToArray();
-            
-            foreach (BluetoothDeviceInfo d in devices)
-            {
-                TreeViewItem newChild = new TreeViewItem();
-                newChild.Header = d.DeviceName;
-                newChild.ItemsSource = 
-                    new string[] { 
-                        "Address: " + d.DeviceAddress.ToString(),
-                        "Connected: " + d.Connected.ToString(),
-                        "Authenticated " + d.Authenticated.ToString()};
-                deviceTreeView.Items.Add(newChild);
-            }
-            
+            return client.DiscoverDevices().ToArray();
         }
 
         private void PositionWindowRelativeToTaskbar()
@@ -148,7 +108,25 @@ namespace BlueHelper
 
         private void refreshBtn_Click(object sender, RoutedEventArgs e)
         {
-            SetupAndStartBluetoothUpdateThread();
+            FillDeviceTreeView();
+        }
+
+        private async void FillDeviceTreeView()
+        {
+            BluetoothDeviceInfo[] devices = await Task.Factory.StartNew(() => DiscoverBluetoothDevices(), TaskCreationOptions.LongRunning);
+            //Limpar o TreeView primeiro
+            deviceTreeView.Items.Clear();
+            foreach (BluetoothDeviceInfo d in devices)
+            {
+                TreeViewItem newChild = new TreeViewItem();
+                newChild.Header = d.DeviceName;
+                newChild.ItemsSource =
+                    new string[] {
+                        "Address: " + d.DeviceAddress.ToString(),
+                        "Connected: " + d.Connected.ToString(),
+                        "Authenticated " + d.Authenticated.ToString()};
+                deviceTreeView.Items.Add(newChild);
+            }
         }
     }
 }
