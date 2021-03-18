@@ -6,24 +6,25 @@
         xmlns:local="clr-namespace:BlueHelper"
         xmlns:ui="http://schemas.modernwpf.com/2019" ui:WindowHelper.UseModernWindowStyle="False"
         mc:Ignorable="d"
-        Title="Bluetooth Settings" Height="200" Width="350" ShowInTaskbar="False" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True">
+        Title="Bluetooth Settings" Height="250" Width="420" ShowInTaskbar="False" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True">
     <Window.Background>
         <SolidColorBrush Opacity="0" Color="White"/>
     </Window.Background>
     <Grid Margin="10">
-        <Border CornerRadius="10" Background="White" Opacity="1">
+        <Border CornerRadius="10" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Opacity="1">
             <Border.Effect>
-                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.3"/>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.2"/>
             </Border.Effect>
 
         </Border>
-        <TextBlock Text="Bluetooth Devices" Style="{StaticResource TitleTextBlockStyle}" Margin="10,7,130,141"/>
+        <local:DeviceRectangle Width="180" Height="100"></local:DeviceRectangle>
+        <TextBlock Text="Bluetooth Devices" Style="{StaticResource TitleTextBlockStyle}" Margin="10,7,130,187"/>
 
-        <TreeView Name="deviceTreeView" Margin="10,49,10,0"/>
+        <TreeView Name="deviceTreeView" Margin="10,165,10,0"/>
 
-        <Button Content="X" HorizontalAlignment="Left" Margin="288,8,0,0" VerticalAlignment="Top" Height="32" Width="32" Click="Button_Click_1"/>
-        <Button Name="refreshBtn" FontFamily="Segoe MDL2 Assets" Content="&#xE149;" Style="{StaticResource AccentButtonStyle}" Margin="214,8,0,140" Click="refreshBtn_Click" Height="32" Width="32"/>
-        <Button FontFamily="Segoe MDL2 Assets" Content="&#xE946;" Margin="251,8,0,140" Height="32" Width="32">
+        <Button Content="X" HorizontalAlignment="Right" Margin="0,11,11,0" VerticalAlignment="Top" Height="32" Width="32" Click="Button_Click_1"/>
+        <Button Name="refreshBtn" FontFamily="Segoe MDL2 Assets" Content="&#xE149;" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource AccentButtonStyle}" Margin="0,11,85,0" Click="refreshBtn_Click" Height="32" Width="32"/>
+        <Button FontFamily="Segoe MDL2 Assets" Content="&#xE946;" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,11,48,0" Height="32" Width="32">
             <ui:FlyoutService.Flyout>
                 <ui:Flyout x:Name="Flyout1">
                     <Grid>
@@ -50,6 +51,6 @@
                 </ui:Flyout>
             </ui:FlyoutService.Flyout>
         </Button>
-        <ui:ProgressBar Name="refreshProgressBar" IsIndeterminate="True" ShowPaused="False" ShowError="False" Margin="10,45,10,131" Visibility="Hidden"/>
+        <ui:ProgressBar Name="refreshProgressBar" IsIndeterminate="False" ShowPaused="False" ShowError="False" Margin="10,47,10,179" Visibility="Visible"/>
     </Grid>
 </Window>
