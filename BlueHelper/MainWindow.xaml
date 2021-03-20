@@ -4,9 +4,48 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BlueHelper"
+        xmlns:models="clr-namespace:BlueHelper.Models"
         xmlns:ui="http://schemas.modernwpf.com/2019" ui:WindowHelper.UseModernWindowStyle="False"
         mc:Ignorable="d"
-        Title="Bluetooth Settings" Height="250" Width="420" ShowInTaskbar="False" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True">
+        Title="Bluetooth Settings" Height="306" Width="420" ShowInTaskbar="False" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True">
+    <Window.Resources>
+        <DataTemplate x:Key="deviceRectangleTemplate">
+            <Grid Height="100" Width="180" AutomationProperties.Name="{Binding BluetoothDeviceInfo.DeviceAddress}">
+                <Border CornerRadius="10"  Opacity="1" Height="100" Width="180">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding BluetoothDeviceInfo.Connected}" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource SystemAccentColorLight3Brush}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+                <Label FontFamily="Segoe MDL2 Assets" Content="&#xE1C9;" Margin="15,15,141,61" FontSize="24" RenderTransformOrigin="0.5,0.5"/>
+                <TextBlock  FontFamily="Segoe UI" Text="{Binding BluetoothDeviceInfo.DeviceName}" Margin="44,18,15,58" Style="{StaticResource BaseTextBlockStyle}" RenderTransformOrigin="0.5,0.5" FontSize="16"/>
+                <TextBlock  FontFamily="Segoe UI" Text="{Binding DeviceTypeString}" Margin="44,42,15,39" Style="{StaticResource BaseTextBlockStyle}" RenderTransformOrigin="0.5,0.5" FontSize="14" FontWeight="Normal"/>
+                <Label FontFamily="Segoe MDL2 Assets" Content="&#xE858;" Margin="42,68,114,8" FontSize="24" RenderTransformOrigin="0.083,0.542"/>
+                <TextBlock  FontFamily="Segoe UI" Text="{Binding BateryLevel, StringFormat='\{0}%'}" Margin="71,71,70,10" Style="{StaticResource BaseTextBlockStyle}" RenderTransformOrigin="1.39,0.474" FontSize="14" FontWeight="Normal"/>
+
+                <Button FontFamily="Segoe MDL2 Assets" Content="&#xE10C;" HorizontalAlignment="Right"
+                VerticalAlignment="Bottom" Margin="0,0,5,5" Background="Transparent">
+                    <ui:FlyoutService.Flyout>
+                        <ui:MenuFlyout>
+                            <MenuItem Header="{Binding BluetoothDeviceInfo.Connected}" />
+                            <MenuItem Header="{Binding BluetoothDeviceInfo.Authenticated}" />
+                            <MenuItem Header="Device Address">
+                                <MenuItem Header="{Binding BluetoothDeviceInfo.DeviceAddress}" />
+                            </MenuItem>
+                        </ui:MenuFlyout>
+                    </ui:FlyoutService.Flyout>
+                </Button>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    
+    
     <Window.Background>
         <SolidColorBrush Opacity="0" Color="White"/>
     </Window.Background>
@@ -17,10 +56,18 @@
             </Border.Effect>
 
         </Border>
-        <local:DeviceRectangle Width="180" Height="100"></local:DeviceRectangle>
-        <TextBlock Text="Bluetooth Devices" Style="{StaticResource TitleTextBlockStyle}" Margin="10,7,130,187"/>
 
-        <TreeView Name="deviceTreeView" Margin="10,165,10,0"/>
+        <ui:GridView Name="deviceGridView" Margin="10,56,5,0" ItemTemplate="{StaticResource deviceRectangleTemplate}">
+            <ui:GridView.ItemContainerStyle>
+                <Style TargetType="ui:GridViewItem">
+                    <Setter Property="Margin" Value="5" />
+                </Style>
+            </ui:GridView.ItemContainerStyle>
+
+            <!--Content Here-->
+        </ui:GridView>
+        
+        <TextBlock Text="Bluetooth Devices" Style="{StaticResource TitleTextBlockStyle}" Margin="10,7,130,187"/>
 
         <Button Content="X" HorizontalAlignment="Right" Margin="0,11,11,0" VerticalAlignment="Top" Height="32" Width="32" Click="Button_Click_1"/>
         <Button Name="refreshBtn" FontFamily="Segoe MDL2 Assets" Content="&#xE149;" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource AccentButtonStyle}" Margin="0,11,85,0" Click="refreshBtn_Click" Height="32" Width="32"/>
@@ -51,6 +98,6 @@
                 </ui:Flyout>
             </ui:FlyoutService.Flyout>
         </Button>
-        <ui:ProgressBar Name="refreshProgressBar" IsIndeterminate="False" ShowPaused="False" ShowError="False" Margin="10,47,10,179" Visibility="Visible"/>
+        <ui:ProgressBar Name="refreshProgressBar" IsIndeterminate="False" ShowPaused="False" ShowError="False" Margin="10,47,10,179" Visibility="Visible" VerticalAlignment="Top"/>
     </Grid>
 </Window>

@@ -8,7 +8,7 @@
              xmlns:ui="http://schemas.modernwpf.com/2019"
              Name="DeviceRectangleControl"
              d:DesignHeight="100" d:DesignWidth="180">
-    <Grid>
+    <Grid Height="100" Width="180">
         <Border CornerRadius="10" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" 
                 Opacity="1" Height="100" Width="180">
         </Border>

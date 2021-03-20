@@ -19,6 +19,8 @@ using InTheHand.Net.Sockets;
 using InTheHand.Bluetooth;
 using System.Diagnostics;
 using System.Threading;
+using BlueHelper.Models;
+using System.Collections.ObjectModel;
 
 namespace BlueHelper
 {
@@ -118,19 +120,20 @@ namespace BlueHelper
             refreshProgressBar.IsIndeterminate = true;            //necessário para parar a progressbar de usar CPU mesmo escondida
             refreshProgressBar.Visibility = Visibility.Visible;
             BluetoothDeviceInfo[] devices = await Task.Factory.StartNew(() => DiscoverBluetoothDevices(), TaskCreationOptions.LongRunning);
-            //Limpar o TreeView primeiro
-            deviceTreeView.Items.Clear();
+            //Limpar primeiro o grid view
+            deviceGridView.Items.Clear();
             foreach (BluetoothDeviceInfo d in devices)
             {
-                TreeViewItem newChild = new TreeViewItem();
-                newChild.Header = d.DeviceName;
-                newChild.ItemsSource =
-                    new string[] {
-                        "Address: " + d.DeviceAddress.ToString(),
-                        "Connected: " + d.Connected.ToString(),
-                        "Authenticated " + d.Authenticated.ToString()};
-                deviceTreeView.Items.Add(newChild);
+                //Colocar o dispositivo no Grid View
+                BluetoothDeviceCustom bluetoothDevice = new BluetoothDeviceCustom()
+                {
+                    BluetoothDeviceInfo = d,
+                    DeviceTypeString = d.ClassOfDevice.MajorDevice.ToString(),
+                    BateryLevel = 69,
+                };
+                deviceGridView.Items.Add(bluetoothDevice);
             }
+
             //Ativar novamente o botão de refresh
             refreshBtn.IsEnabled = true;
             refreshProgressBar.IsIndeterminate = false;            //necessário para parar a progressbar de usar CPU mesmo escondida
